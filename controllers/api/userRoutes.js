@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const User = require('../../models/User');
 
 router.post('/', async (req, res) => {
   try {
@@ -14,6 +14,14 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+});
+
+router.get('/test', async (req, res) => {
+  // find all categories
+  // be sure to include its associated Products
+  const bookData = await User.findAll();
+
+  return res.json(bookData);
 });
 
 router.post('/login', async (req, res) => {
@@ -39,10 +47,9 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
-
   } catch (err) {
     res.status(400).json(err);
   }

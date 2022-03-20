@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog } = require('../../models');
+const User = require('../../models/User');
 
 router.post('/', async (req, res) => {
   try {
@@ -12,6 +12,14 @@ router.post('/', async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+});
+
+router.get('/login', async (req, res) => {
+  // find all categories
+  // be sure to include its associated Products
+  const bookData = await User.findAll();
+
+  return res.json(bookData);
 });
 
 router.delete('/:id', async (req, res) => {
