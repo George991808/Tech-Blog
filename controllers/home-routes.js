@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
   const BlogData = await Blog.findAll().catch((err) => {
     res.json(err);
   });
-  const Bloges = BlogData.map((Blog) => Blog.get({ plain: true }));
+  const Blogs = BlogData.map((Blog) => Blog.get({ plain: true }));
   res.render('login', { Blogs });
 });
 
