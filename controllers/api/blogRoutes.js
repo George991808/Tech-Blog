@@ -14,13 +14,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/login', async (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
-  const bookData = await User.findAll();
+// router.get('/login', async (req, res) => {
+//   // find all categories
+//   // be sure to include its associated Products
+//   const bookData = await User.findAll();
 
-  return res.json(bookData);
-});
+//   return res.json(bookData);
+// });
 
 router.delete('/:id', async (req, res) => {
   try {

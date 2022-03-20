@@ -12,20 +12,20 @@ router.get('/', async (req, res) => {
 });
 
 // route to get all Bloges
-// router.get('/login/', async (req, res) => {
-//   const BlogData = await Blog.findAll().catch((err) => {
-//     res.json(err);
-//   });
-//   const Blogs = BlogData.map((Blog) => Blog.get({ plain: true }));
-//   res.render('login', { Blogs });
-// });
-router.get('/login', async (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
-  const bookData = await User.findAll();
-
-  return res.json(bookData);
+router.get('/login/', async (req, res) => {
+  const BlogData = await Blog.findAll().catch((err) => {
+    res.json(err);
+  });
+  const Blogs = BlogData.map((Blog) => Blog.get({ plain: true }));
+  res.render('login', { Blogs });
 });
+// router.get('/login', async (req, res) => {
+//   // find all categories
+//   // be sure to include its associated Products
+//   const bookData = await User.findAll();
+
+//   return res.json(bookData);
+// });
 
 // route to get one Blog
 router.get('/Blog/:id', async (req, res) => {
