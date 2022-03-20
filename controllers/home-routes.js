@@ -7,6 +7,15 @@ router.get('/', async (req, res) => {
     res.json(err);
   });
   const Blogs = BlogData.map((Blog) => Blog.get({ plain: true }));
+  res.render('home', { Blogs });
+});
+
+// route to get all Bloges
+router.get('/login/', async (req, res) => {
+  const BlogData = await Blog.findAll().catch((err) => {
+    res.json(err);
+  });
+  const Blogs = BlogData.map((Blog) => Blog.get({ plain: true }));
   res.render('login', { Blogs });
 });
 
