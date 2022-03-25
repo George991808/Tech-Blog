@@ -20,7 +20,13 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+router.get('/username', async (req, res) => {
+  // find one category by its `id` value
+  // be sure to include its associated Products
+  const user = await User.findByPk(req.session.userid);
 
+  res.json(user.name);
+});
 // Login
 router.post('/login', async (req, res) => {
   try {
@@ -36,7 +42,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
+    console.log('1');
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -45,10 +51,11 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-
+    console.log('2');
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      req.session.userid = dbUserData.id;
+      console.log(req.session.userid);
       res
         .status(200)
         .json({ user: dbUserData, message: 'You are now logged in!' });

@@ -9,7 +9,8 @@ router.get('/', async (req, res) => {
   // } else {
   try {
     const dbBlogData = await Blog.findAll();
-
+    console.log('hello');
+    console.log(req.session.userid);
     const blog = dbBlogData.map((blog) => blog.get({ plain: true }));
 
     res.render('home', {
@@ -50,6 +51,17 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/newpost', async (req, res) => {
+  if (req.session.loggedIn === false) {
+    res.redirect('/');
+    return;
+  }
+  console.log(req.session.userid);
+  const dbUserData = await User.findByPk(req.session.userid);
+  const user = dbUserData.get({ plain: true });
+  res.render('newblog', { user, loggedIn: req.session.loggedIn });
 });
 
 module.exports = router;
