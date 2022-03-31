@@ -28,21 +28,23 @@ router.post('/', async (req, res) => {
 // });
 
 router.delete('/:id', async (req, res) => {
+  console.log('hi' + req.params.id);
   try {
     const BlogData = await Blog.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
 
     if (!BlogData) {
       res.status(404).json({ message: 'No Blog found with this id!' });
+      console.log('uyi' + req.params.id);
       return;
     }
 
     res.status(200).json(BlogData);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

@@ -1,0 +1,18 @@
+{{#each blog}}
+  <div>
+    <a href='/blog/{{id}}'>
+      <section class='card'>
+
+        <header>{{name}}</header>
+        <p>created: {{date_created}}</p>
+      </section>
+    </a>
+    <button class='deletebtn' data-blog-id='{{id}}'>Delete Blog</button>
+    <button class='updatebtn' data-blog-id='{{id}}'>Update Blog</button>
+  </div>
+  <br />
+{{/each}}
+
+{{#if loggedIn}}
+  <script src='/js/deleteblog.js'></script>
+{{/if}}

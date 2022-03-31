@@ -1,0 +1,22 @@
+<form class='form blog-form'>
+
+  <h1>Title</h1>
+
+  <input class='form-input' type='text' id='title' value='{{blog.name}}' />
+  <h3>Author</h3>
+  <p id='user'>{{user.name}}</p>
+  <h1>Details</h1>
+  <textarea
+    class='form-entry'
+    type='text'
+    id='description'
+    rows='20'
+    value='{{blog.post}}'
+    blogid='{{blog.id}}'
+  ></textarea>
+  <button class='btn btn-primary' type='submit'>Update Blog Post</button>
+</form>
+
+{{#if loggedIn}}
+  <script src='/js/updateblog.js'></script>
+{{/if}}
