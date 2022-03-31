@@ -8,7 +8,11 @@
       </section>
     </a>
     <button class='deletebtn' data-blog-id='{{id}}'>Delete Blog</button>
-    <button class='updatebtn' data-blog-id='{{id}}'>Update Blog</button>
+    <a href='/updateblog/{{id}}'><button
+        class='updatebtn'
+        data-blog-id='{{id}}'
+      >Update Blog</button>
+    </a>
   </div>
   <br />
 {{/each}}

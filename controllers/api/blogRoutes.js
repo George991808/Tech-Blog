@@ -49,4 +49,18 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    // res.json(req.body);
+    const blogData = await Blog.findByPk(req.params.id);
+    console.log(req.body.name);
+    await blogData.update(req.body);
+    await blogData.save;
+
+    res.status(200).json({ post: req.body.post, name: req.body.name });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
