@@ -40,7 +40,7 @@ router.get('/blog/:id', async (req, res) => {
     const dbCommentData = await Comment.findAll({
       include: { model: User, attributes: ['name'], raw: true },
       where: {
-        blog_id: blog.user_id,
+        blog_id: blog.id,
       },
       raw: true,
     });

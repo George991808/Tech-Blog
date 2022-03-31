@@ -1,16 +1,25 @@
 <h1 data-blog-id='{{blog.id}}' id='title'>{{blog.name}}</h1>
 <h3>Author: {{user.name}}</h3>
+<p>Created: {{blog.date_created}}</p>
 <p>{{blog.post}}</p>
+<br />
+<h3>Comments</h3>
+
 {{#if loggedIn}}
   <textarea class='form-entry' type='text' id='commentInfo' rows='3'></textarea>
   <button id='comment' class='btn' data-comment-id='{{commenter}}'>Add Comment</button>
 {{/if}}
+<br />
 
 {{#each comments as |comment|}}
   <p>
     {{'user.name'}}
+
+    {{comment.date_created}}
   </p>
+
   <p>{{comment.comment}}</p>
+  <br />
 {{/each}}
 {{#if loggedIn}}
   <script src='/js/blog.js'></script>
