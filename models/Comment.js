@@ -11,14 +11,11 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+
     comment: {
       type: DataTypes.STRING,
     },
-    
+
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -31,14 +28,13 @@ Comment.init(
         model: 'user',
         key: 'id',
       },
-     
     },
-        blog_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'blog',
-          key: 'id',
-    },
+    blog_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'blog',
+        key: 'id',
+      },
     },
   },
   {

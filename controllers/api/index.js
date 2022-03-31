@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const blogRoutes = require('./blogRoutes');
+const commentRoutes = require('./commentRoutes');
 
 // const User = require('../../models/User');
 // router.get('/login', async (req, res) => {
@@ -12,5 +13,6 @@ const blogRoutes = require('./blogRoutes');
 // });
 router.use('/users', userRoutes);
 router.use('/blogs', blogRoutes);
+router.use('/comments', commentRoutes);
 
 module.exports = router;

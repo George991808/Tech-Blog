@@ -1,3 +1,17 @@
-<h1>{{blog.name}}</h1>
+<h1 data-blog-id='{{blog.id}}' id='title'>{{blog.name}}</h1>
 <h3>Author: {{user.name}}</h3>
 <p>{{blog.post}}</p>
+{{#if loggedIn}}
+  <textarea class='form-entry' type='text' id='commentInfo' rows='3'></textarea>
+  <button id='comment' class='btn' data-comment-id='{{commenter}}'>Add Comment</button>
+{{/if}}
+
+{{#each comments as |comment|}}
+  <p>
+    {{'user.name'}}
+  </p>
+  <p>{{comment.comment}}</p>
+{{/each}}
+{{#if loggedIn}}
+  <script src='/js/blog.js'></script>
+{{/if}}

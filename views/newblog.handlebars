@@ -15,4 +15,6 @@
   <button class='btn btn-primary' type='submit'>Create new Blog Post</button>
 </form>
 
-<script src='./js/blog.js'></script>
+{{#if loggedIn}}
+  <script src='/js/newblog.js'></script>
+{{/if}}

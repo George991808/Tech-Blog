@@ -1,25 +1,24 @@
-const blogFormHandler = async (event) => {
+const addCommentHandler = async (event) => {
   event.preventDefault();
   const data = {};
-  const name = document.querySelector('#title').value.trim();
-  const post = document.querySelector('#description').value.trim();
-  //const name = document.querySelector('#user').innerHTML.trim();
-  //   console.log(name);
-  //   console.log(details);
-  //   console.log(user);
-  const response = await fetch('/api/blogs', {
+  const commentID = document
+    .querySelector('#comment')
+    .getAttribute('data-comment-id');
+  const BlogId = document.querySelector('#title').getAttribute('data-blog-id');
+  const comment = document.querySelector('#commentInfo').value.trim();
+
+  const response = await fetch('/api/comments', {
     method: 'POST',
-    body: JSON.stringify({ name, post }),
+    body: JSON.stringify({ user_id: commentID, blog_id: BlogId, comment }),
     headers: { 'Content-Type': 'application/json' },
   });
 
   if (response.ok) {
-    document.location.replace('/');
+    console.log('hello');
+    location.reload();
   } else {
-    alert('Failed to post blog.');
+    alert('Failed to post comment.');
   }
 };
 
-document
-  .querySelector('.blog-form')
-  .addEventListener('submit', blogFormHandler);
+document.querySelector('#comment').addEventListener('click', addCommentHandler);

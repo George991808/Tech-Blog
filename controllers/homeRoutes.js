@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Blog = require('../models/Blog');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 
 // GET all galleries for homepage
 router.get('/', async (req, res) => {
@@ -36,7 +37,23 @@ router.get('/blog/:id', async (req, res) => {
     const blog = dbBlogData.get({ plain: true });
     const dbUserData = await User.findByPk(blog.user_id, {});
     const user = dbUserData.get({ plain: true });
-    res.render('blog', { blog, user, loggedIn: req.session.loggedIn });
+    const dbCommentData = await Comment.findAll({
+      include: { model: User, attributes: ['name'], raw: true },
+      where: {
+        blog_id: blog.user_id,
+      },
+      raw: true,
+    });
+
+    // res.json(dbCommentData);
+
+    res.render('blog', {
+      blog,
+      user,
+      loggedIn: req.session.loggedIn,
+      comments: dbCommentData,
+      commenter: req.session.userid,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
